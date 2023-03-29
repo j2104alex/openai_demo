@@ -65,8 +65,16 @@ async function generarTexto() {
              * únicas que se generarán. devuelve una lista con n elementos, cada uno de los
              *  cuales representa una respuesta generada por el modelo de lenguaje. */
             n: 1,
+            /**se utiliza para habilitar la respuesta en tiempo real a medida que se 
+             * va generando el texto */
             stream: false,
+            /**e utiliza para obtener información adicional sobre las probabilidades de 
+             * las palabras generadas por el modelo de lenguaje, sirve para evaluar la
+             * calidad de la respuesta */
             logprobs: null,
+            /**Se utiliza para indicar al modelo de lenguaje cuándo detener la generación
+             * de texto
+             */
             stop: "\n"
           });
           console.log(response);
