@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
-//require('dotenv').config();
+require('dotenv').config();
 
 /**se crea una instancia de la clase Configuration con la información necesaria para
  *  realizar la autenticación con la API de OpenAI. En este caso, se está utilizando
@@ -11,7 +11,7 @@ const configuration = new Configuration({
      *  acceso a todas las variables de entorno definidas en el sistema operativo.
      *  En este caso, se busca la variable OPENAI_API_KEY y se utiliza como valor
      *  para la propiedad apiKey del objeto de configuración. */
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY
 });
 /**se crea una instancia de la clase OpenAIApi, pasándole la instancia de
  *  Configuration creada anteriormente como argumento. Esto configura la 
@@ -41,7 +41,7 @@ async function recuperarModelos() {
     console.log(response);
 }
 
-recuperarModelos();
+//recuperarModelos();
 
 /**CREAR TEXTO:
  * Genera un texto dependiendo del contenido del cuerpo de la solicitud
@@ -52,10 +52,25 @@ async function generarTexto() {
             model: "text-davinci-003",
             /**es el texto inicial que se proporciona al modelo de lenguaje
              *  de OpenAI para generar el texto de salida. */
-            prompt: "My name is Sofia, i'm 34 years old, i'm developer with 5 experience years please create a decription for a cv",
+            //CATEGORIZAR
+            prompt: `categorice los siguientes productos según los segmentos de clientes 
+            que podrían estar interesados en ellos. Utilice las siguientes categorías si
+             son apropiadas: B2B, B2C, servicios, productos físicos. Tenga en cuenta que 
+             un producto puede pertenecer a más de una categoría. Los productos son: 
+            Software de gestión de inventario
+            Zapatos deportivos,
+            Servicio de limpieza de oficinas,
+            Libros de cocina, 
+            Máquinas de café espresso,
+            Servicio de asesoramiento financiero
+            Camisetas con diseños personalizados
+            Herramientas de jardinería
+            Por favor, indique las categorías correspondientes a cada producto y si tiene más de una categoría, sepárelas por comas.`,
+            //GENERAR TEXTO CON BASE A UN ENUNCIADO
+            //prompt: "My name is Sofia, i'm 34 years old, i'm developer with 5 experience years please create a decription for a cv",
             /**limitar el número máximo de tokens (o palabras) que se 
              * generarán como respuesta. */
-            max_tokens: 50,
+            max_tokens: 200,
             /**Valores más altos como 0.8 harán que la salida sea más aleatoria, mientras 
              * que valores más bajos como 0.2 la harán más enfocada */
             temperature: 0,
@@ -75,9 +90,9 @@ async function generarTexto() {
             /**Se utiliza para indicar al modelo de lenguaje cuándo detener la generación
              * de texto
              */
-            stop: "\n"
+            stop: ""
         });
-        console.log(response);
+        console.log(response.data.choices[0].text);
     } catch (err) {
         console.log(err);
     }
@@ -106,7 +121,7 @@ async function generarImagen() {
 //generarImagen();
 
 /**
- * Generar imagenes
+ * Audio a texto
  */
 async function audioATexto() {
     try {
@@ -123,7 +138,9 @@ async function audioATexto() {
             */
             fs.createReadStream("audio.mp3"),
             "whisper-1")
+            console.log(resp)
     } catch (err) {
         console.log(err)
     }
 }
+//audioATexto();

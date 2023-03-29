@@ -1,5 +1,28 @@
 {
+  "name": "ia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j2104alex/openai_demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j2104alex/openai_demo/issues"
+  },
+  "homepage": "https://github.com/j2104alex/openai_demo#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "openai": "^3.2.1"
   }
 }
