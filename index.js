@@ -41,7 +41,7 @@ async function recuperarModelos() {
     console.log(response);
 }
 
-//recuperarModelos();
+recuperarModelos();
 
 /**CREAR TEXTO:
  * Genera un texto dependiendo del contenido del cuerpo de la solicitud
@@ -82,5 +82,5 @@ async function generarTexto() {
     console.log(err);
     }
 }
-generarTexto();
+//generarTexto();
       
